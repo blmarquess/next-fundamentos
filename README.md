@@ -1,2 +1,3 @@
 # next-fundamentos
-Repo onde guardarei alguns peguenos projetos que utilizarei para esturar o NextJ
+Repo onde guardarei alguns pequenos projetos que utilizarei para esturar o NextJ
+
