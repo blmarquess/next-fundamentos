@@ -1,28 +1,17 @@
-export const clientList = [
-  {
-    id: Math.random(),
-    name: 'nubia',
-    age: 44
-  },
-  {
-    id: Math.random(),
-    name: 'jaqueline',
-    age: 18
-  },
-  {
-    id: Math.random(),
-    name: 'ellen',
-    age: 26
-  },
-  {
-    id: Math.random(),
-    name: 'amanda',
-    age: 22
-  },
-  {
-    id: Math.random(),
-    name: 'vitoria',
-    age: 34
-  },
+import Cliente from "./Cliente";
 
+export const clientList = [
+  new Cliente('Jaqueline', 19),
+  new Cliente('Hellen', 26),
+  new Cliente('Vitoria', 24),
+  new Cliente('Amanda', 44),
+  new Cliente('Bia', 42),
+  new Cliente('Soraia', 34),
+  new Cliente('Manoela', 24),
+  new Cliente('Nubia', 28),
+  new Cliente('Ana', 18),
+  new Cliente('Fernanda', 38),
+  new Cliente('Daniela', 31),
+  new Cliente('Samanta', 25),
+  new Cliente('Geovana', 23),
 ];

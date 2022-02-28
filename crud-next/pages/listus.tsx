@@ -8,7 +8,7 @@ export default function listus(){
   <Layout>
     <section>
       <h1>Pagina de listagem de usuarios</h1>
-      <TableList clients={[...clientList]} />
+      <TableList clients={ clientList } />
     </section>
   </Layout>
   );
