@@ -1,9 +1,10 @@
 import Layout from "../components/Layout";
+import Title from "../components/Title";
 
 export default function cadastro(){
   return(
   <Layout>
-    <h1>Pagina de cadastro</h1>
+    <Title title="Pagina de cadastro" />
   </Layout>
   );
 }
