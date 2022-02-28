@@ -8,13 +8,13 @@ interface iLayout {
 export default function Layout({ children }: iLayout):JSX.Element {
   return (
     <div>
-      <header className="h-36 w-full fixed">
+      <header className="max-h-36 w-full">
         <NavBar />
       </header>
-      <main className="mt-0 flex flex-1 grow-1 h-full w-full">
+      <main className="flex flex-1 grow-1 w-full min-h-screen">
         {children}
       </main>
-      <footer className="h-36 w-full">
+      <footer className="max-h-24 w-full">
         <Footer />
       </footer>
     </div>
