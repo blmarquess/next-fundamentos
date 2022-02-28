@@ -1,15 +1,17 @@
+import { ReactElement } from 'react';
 import Layout from '../components/Layout'; 
 
-export default function Home() {
+const Home: React.FC = (): JSX.Element => {
   return(
     <Layout>
-      <div className="">
+      <div>
         <h1>App Title</h1>
-
         <p>
           Testando a aplicação
         </p>
       </div>
     </Layout>
-  )
+  );
 }
+
+export default Home;
