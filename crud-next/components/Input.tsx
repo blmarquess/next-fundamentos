@@ -4,7 +4,7 @@ interface InputProps {
   value: string | number;
   disable?: boolean;
   name: string;
-  update: Function;
+  update: (name: string, value: string | number) => void;
 }
 
 export default function Input({
