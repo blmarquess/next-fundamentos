@@ -11,7 +11,7 @@ export default function Layout({ children }: iLayout):JSX.Element {
       <header className="max-h-36 w-full">
         <NavBar />
       </header>
-      <main className="flex flex-1 grow-1 w-full min-h-screen justify-center">
+      <main className="flex flex-col w-full min-h-screen justify-center items-center">
         {children}
       </main>
       <footer className="max-h-24 w-full">

@@ -12,13 +12,13 @@ export default function TableList({ clients }: TabelaProps) {
           scope="col"
           className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
         >
-           Nome
+           ID
         </td>
         <td
           scope="col"
           className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
         >
-           ID
+           Nome
         </td>
         <td
           scope="col"
@@ -43,8 +43,8 @@ export default function TableList({ clients }: TabelaProps) {
       className={ i % 2 === 0
       ? `border-solid border-1 border-stone-400 bg-white`
       : `border-solid border-1 border-stone-400 bg-blue-50`}>
-        <td className="px-6 py-4 whitespace-nowrap">{client.name}</td>
         <td className="px-6 py-4 whitespace-nowrap">{i}</td>
+        <td className="px-6 py-4 whitespace-nowrap">{client.name}</td>
         <td className="px-6 py-4 whitespace-nowrap">{client.age}</td>
         <td className="px-6 py-4 whitespace-nowrap">
           <div className="flex items-center space-x-2">
