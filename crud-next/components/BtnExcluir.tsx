@@ -2,7 +2,7 @@ export default function BtnExcluir():JSX.Element{
   return(
     <button type="button">
       <svg
-      className="w-6 h-6 rounded-full p-1 bg-rose-100 hover:bg-red-500"
+      className="w-6 h-6 rounded-full p-1 bg-rose-100 hover:bg-red-400"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"

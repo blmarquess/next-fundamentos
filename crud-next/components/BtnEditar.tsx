@@ -4,7 +4,7 @@ export default function BtnEdit(): JSX.Element {
     type="button"
     >
       <svg
-        className="w-6 h-6 rounded-full p-1 bg-orange-100 hover:bg-orange-500"
+        className="w-6 h-6 rounded-full p-1 bg-orange-50 hover:bg-orange-300"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
