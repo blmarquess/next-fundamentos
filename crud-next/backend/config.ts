@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from 'firebase';
 import 'firebase/sirestore';
 
 if(!firebase.apps.langth) {
