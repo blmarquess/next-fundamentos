@@ -1,10 +1,11 @@
+import React from "react";
 import Layout from "../components/Layout";
-import Title from "../components/Title";
+import Form from "../components/Form";
 
-export default function cadastro(){
-  return(
-  <Layout>
-    <Title title="Pagina de cadastro" />
-  </Layout>
+export default function cadastro(): JSX.Element {
+  return (
+    <Layout>
+      <Form />
+    </Layout>
   );
 }

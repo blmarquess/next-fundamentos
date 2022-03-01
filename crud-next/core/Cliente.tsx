@@ -1,4 +1,3 @@
-import { threadId } from "worker_threads"
 
 export default class Cliente {
   #id: string
