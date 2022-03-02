@@ -30,7 +30,11 @@ export default function Form({ age, name, funcForm }: FormProps): JSX.Element {
   }
 
   function saveUser() {
-    const newUser = new Cliente(nUser.name, nUser.age);
+    const newUser = new Cliente(
+      nUser.name,
+      nUser.age,
+      Math.random().toString(16)
+    );
 
     funcForm(newUser);
 
