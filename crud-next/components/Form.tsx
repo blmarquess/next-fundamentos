@@ -9,6 +9,7 @@ interface FormProps {
   id?: string;
   name?: string;
   age?: number;
+  funcForm: Function;
 }
 
 interface user {
@@ -16,7 +17,7 @@ interface user {
   age: number;
 }
 
-export default function Form({ age, name }: FormProps): JSX.Element {
+export default function Form({ age, name, funcForm }: FormProps): JSX.Element {
   const initial: user = { name: name ?? "", age: age ?? 0 };
   const [nUser, setUser] = useState<user>(initial);
 
@@ -24,10 +25,16 @@ export default function Form({ age, name }: FormProps): JSX.Element {
     setUser(() => ({ ...nUser, [name]: value }));
   }
 
-  function redirectTo() {
+  function goToHome() {
+    return Router.push("/");
+  }
+
+  function saveUser() {
     const newUser = new Cliente(nUser.name, nUser.age);
-    console.log(newUser);
-    Router.push("/listus");
+
+    funcForm(newUser);
+
+    return goToHome();
   }
 
   return (
@@ -54,10 +61,11 @@ export default function Form({ age, name }: FormProps): JSX.Element {
           text="Salvar"
           color={`bg-green-400 px-4 py-2 rounded-md border-solid border-1
             border-gray-400 hover:bg-green-700 hover:border-yellow-300`}
-          dnf={redirectTo}
+          dnf={saveUser}
         />
         <Button
           text="Canselar"
+          dnf={goToHome}
           color={`bg-blue-400 px-4 py-2 rounded-md border-solid border-1
             border-gray-400 hover:bg-blue-700 hover:border-yellow-300`}
         />
