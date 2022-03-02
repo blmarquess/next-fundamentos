@@ -12,14 +12,20 @@ const Home: React.FC = (): JSX.Element => {
   const usersCollectionRef = collection(dbase, 'users');
 
   useEffect(() => {
-  const getUsers = async () => {
-    const data = await getDocs(usersCollectionRef)
-    const users = data.docs?.map((doc) => ({ ...doc.data() }));
-    setClientsList(()=> ([...users.map((us) => new Cliente(us.name, us.age, us.id))]));
-    console.log([...users.map((us) => ({name: us.name, idade: us.age, id:us.id }))]);
-  };
-  getUsers();
-  }, []);
+    const getUsers = async () => {
+      const data = await getDocs(usersCollectionRef);
+      const users = data.docs
+        ?.map((doc) => ({ ...doc.data() }))
+        .map((us) => new Cliente(us.name, us.age, us.id));
+
+      if (users.length > clientsListe.length) {
+        return setClientsList(() => [...users]);
+      } else {
+        return;
+      }
+    };
+    getUsers();
+  }, [clientsListe.length, usersCollectionRef]);
 
   return (
     <Layout>
