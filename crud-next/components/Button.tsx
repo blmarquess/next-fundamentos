@@ -1,15 +1,12 @@
 interface ButtonProps {
   text: string;
   color: string;
+  dnf?: () => void;
 }
 
-export default function Button({ text, color }: ButtonProps): JSX.Element {
+export default function Button({ text, color, dnf }: ButtonProps): JSX.Element {
   return (
-    <button
-      type="button"
-      className={`bg-${color}-300  px-4 py-2 rounded-md border-solid border-1 
-      border-gray-400 hover:bg-${color}-100 hover:border-yellow-300`}
-    >
+    <button type="button" onClick={dnf} className={color}>
       {text}
     </button>
   );
