@@ -1,13 +1,19 @@
 import Cliente from '../core/Cliente';
+import { useRouter } from 'next/router';
 import BtnEdit from './BtnEditar';
 import BtnExcluir from './BtnExcluir';
 
 interface TabelaProps {
-  clients: Cliente[];
+  clients?: Cliente[];
   fcdelete: Function;
 }
 
 export default function TableList({ clients, fcdelete }: TabelaProps) {
+  const router = useRouter();
+  function editUser(id: string) {
+    router.push(`/edition/${id}`);
+  }
+
   function renderTableHeader() {
     return (
       <tr className="border-solid border-b-2 border-gray-300 bg-blue-400">
@@ -55,9 +61,9 @@ export default function TableList({ clients, fcdelete }: TabelaProps) {
         <td className="px-6 py-4 whitespace-nowrap">
           <div className="flex items-center space-x-2">
             <BtnEdit
-              func={() => console.log("clicou no usuario:", client.name)}
+              func={() => editUser(client.id)}
             />
-            <BtnExcluir func={() => fcdelete(client.id)} />
+            <BtnExcluir func={() => fcdelete(client)} />
           </div>
         </td>
       </tr>

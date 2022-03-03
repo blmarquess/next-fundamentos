@@ -6,7 +6,7 @@ import dbase from '../backend/config';
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
 
-const Home: React.FC = (): JSX.Element => {
+const ListUsers: React.FC = (): JSX.Element => {
   const [clientsListe, setClientsList] = useState<Cliente[]>([]);
   const usersCollectionRef = collection(dbase, "users");
   const router = useRouter();
@@ -46,4 +46,4 @@ const Home: React.FC = (): JSX.Element => {
   );
 };
 
-export default Home;
+export default ListUsers;
