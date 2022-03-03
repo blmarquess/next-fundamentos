@@ -29,11 +29,11 @@ export default class CollectionClients implements ClienteRepositorio {
         return doc.data();
       }
   }
-  
+
   async deletCli(cliente: Cliente): Promise<void> {
       return this.#colecao().doc(cliente.id).delete();
   }
-  
+
   async getAllCli(): Promise<Cliente[]> {
     const query = await this.#colecao().get();   
     return query.docs?.map((doc: { data: () => any; }) => doc.data()) ?? [];

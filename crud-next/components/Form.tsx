@@ -8,17 +8,17 @@ import Cliente from "../core/Cliente";
 interface FormProps {
   id?: string;
   name?: string;
-  age?: number;
+  age?: string;
   funcForm: Function;
 }
 
 interface user {
   name: string;
-  age: number;
+  age: string;
 }
 
 export default function Form({ age, name, funcForm }: FormProps): JSX.Element {
-  const initial: user = { name: name ?? "", age: age ?? 0 };
+  const initial: user = { name: name ?? "", age: age ?? '0' };
   const [nUser, setUser] = useState<user>(initial);
 
   function upDateUState(name: string, value: string | number): void {

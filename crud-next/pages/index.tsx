@@ -33,8 +33,8 @@ const Home: React.FC = (): JSX.Element => {
     getUsers();
   }, [clientsListe.length, usersCollectionRef]);
 
-  async function deletUser(id: string) {
-    const userDoc = doc(dbase, "users", id);
+  async function deletUser(cli: Cliente) {
+    const userDoc = doc(dbase, "users", cli.id);
     await deleteDoc(userDoc);
     router.reload();
   }
