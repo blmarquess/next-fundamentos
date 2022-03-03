@@ -16,7 +16,6 @@ const Home: React.FC = (): JSX.Element => {
   useEffect(() => {
     const getUsers = async () => {
       const data = await getDocs(usersCollectionRef);
-      console.log(data.docs?.map((dc) => ({ ...dc.data(), id: dc.id })));
       const users = data.docs
         ?.map((doc) => ({
           name: doc.data().name,
