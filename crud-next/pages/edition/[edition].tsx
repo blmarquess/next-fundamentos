@@ -1,38 +1,45 @@
 import { useRouter } from 'next/router';
-import React from "react";
-import Layout from "../../components/Layout";
-import Form from "../../components/Form";
-import { collection, doc, updateDoc, query, where, getDocs } from "firebase/firestore";
+import { useEffect, useState } from 'react';
+import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import dbase from "../../backend/config";
 import Cliente from "../../core/Cliente";
 
-const  edition = ():JSX.Element => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const {query: {edition}} = useRouter();
-  const idEdit = edition  as string;
+import Layout from "../../components/Layout";
+import Form from "../../components/Form";
+
+export default function Edition(): JSX.Element {
+  const idEdit = useRouter().query.edition as string;
   const usersCollectionRef = collection(dbase, "users");
-  const getUEdit = async () => {
-    const edUser = await getDocs(usersCollectionRef);
-    const toEdit = edUser.docs.filter((doc) => doc.id === edition);
-    return toEdit;
-  }
+  const userDoc = doc(usersCollectionRef, idEdit);
+  const [edUser, setEdUser] = useState<Cliente>(Cliente.cleaner());
+
+  useEffect(() => {
+    const getUser = async () => {
+      const usDocs = (await getDoc(userDoc)).data();
+      const AtEdit = new Cliente(usDocs?.name, usDocs?.age, usDocs?.id);
+      if (edUser.name === '') {
+        return  setEdUser(AtEdit);
+      }};
+    getUser();
+  }, [edUser, userDoc]);
 
   const updateUser = async (editUsr: Cliente) => { 
-    const userDoc = doc(usersCollectionRef, idEdit);
     const newFealds = {
       name: editUsr.name,
       age: editUsr.age,
       id: editUsr.id,
     };
-    const res = await updateDoc(userDoc, newFealds);
-    console.log('res',res);
+    await updateDoc(userDoc, newFealds);
   }
 
   return (
     <Layout>
-      <Form funcForm={updateUser} />
+          <Form
+            funcForm={updateUser}
+            id={edUser && edUser.id}
+            name={edUser.name}
+            age={edUser.age}
+          />
     </Layout>
   );
 }
-
-export default edition;
