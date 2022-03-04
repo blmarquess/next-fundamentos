@@ -19,7 +19,7 @@ interface user {
 }
 
 export default function Form({ age, name, funcForm, id }: FormProps): JSX.Element {
-  const initial: user = { name: name ?? "", age: age ?? '0', id: id ?? "" };
+  const initial: user = { name: name ?? "", age: age ?? '0', id: "" };
   const [nUser, setUser] = useState<user>(initial);
 
   function upDateUState(name: string, value: string | number): void {
