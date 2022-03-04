@@ -7,7 +7,7 @@ import Cliente from "../../core/Cliente";
 import Layout from "../../components/Layout";
 import Form from "../../components/Form";
 
-export default function Edition(): JSX.Element {
+const Edition = (): JSX.Element => {
   const idEdit = useRouter().query.edition as string;
   const usersCollectionRef = collection(dbase, "users");
   const userDoc = doc(usersCollectionRef, idEdit);
@@ -43,3 +43,5 @@ export default function Edition(): JSX.Element {
     </Layout>
   );
 }
+
+export default Edition;
