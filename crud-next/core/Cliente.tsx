@@ -10,8 +10,8 @@ export default class Cliente {
     this.#id = id;
   }
 
-  static vazio() {
-    return new Cliente("", '0', Math.random().toString(8));
+  static cleaner() {
+    return new Cliente('', '', '');
   }
 
   get id() {
