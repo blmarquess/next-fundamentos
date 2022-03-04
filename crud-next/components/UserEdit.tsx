@@ -1,16 +1,16 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
-import dbase from "../../backend/config";
-import Cliente from "../../core/Cliente";
+import dbase from '../backend/config';
+import Cliente from '../core/Cliente';
 
-import Layout from "../../components/Layout";
-import Form from "../../components/Form";
+import Layout from "./Layout";
+import Form from "./Form";
 
-const Edition = (): JSX.Element => {
+export default function UserEdit():JSX.Element {
   const idEdit = useRouter().query.edition as string;
   const usersCollectionRef = collection(dbase, "users");
-  const userDoc = doc(usersCollectionRef, idEdit);
+  const userDoc = doc(usersCollectionRef, idEdit );
   const [edUser, setEdUser] = useState<Cliente>(Cliente.cleaner());
 
   useEffect(() => {
@@ -31,9 +31,8 @@ const Edition = (): JSX.Element => {
     };
     await updateDoc(userDoc, newFealds);
   }
-
   return (
-    <Layout>
+        <Layout>
           <Form
             funcForm={updateUser}
             id={edUser && edUser.id}
@@ -41,7 +40,5 @@ const Edition = (): JSX.Element => {
             age={edUser.age}
           />
     </Layout>
-  );
+  )
 }
-
-export default Edition;
