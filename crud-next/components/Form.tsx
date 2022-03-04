@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Router from "next/router";
 
 import Button from "./Button";
@@ -9,21 +9,32 @@ interface FormProps {
   id?: string;
   name?: string;
   age?: string;
-  funcForm: Function;
+  funcForm: (u: Cliente) => void;
 }
 
 interface user {
   name: string;
   age: string;
+  id?: string;
 }
 
-export default function Form({ age, name, funcForm }: FormProps): JSX.Element {
-  const initial: user = { name: name ?? "", age: age ?? '0' };
+export default function Form({ age, name, funcForm, id }: FormProps): JSX.Element {
+  const initial: user = { name: name ?? "", age: age ?? '0', id: id ?? "" };
   const [nUser, setUser] = useState<user>(initial);
 
   function upDateUState(name: string, value: string | number): void {
     setUser(() => ({ ...nUser, [name]: value }));
   }
+
+  useEffect(() => {
+    if (id && nUser.id === "") {
+      return setUser(() => ({
+        id: id as string,
+        name: name as string,
+        age: age as string
+      }));
+    }
+  }, [age, id, nUser.id, name]);
 
   function goToHome() {
     return Router.push("/");
@@ -33,7 +44,7 @@ export default function Form({ age, name, funcForm }: FormProps): JSX.Element {
     const newUser = new Cliente(
       nUser.name,
       nUser.age,
-      Math.random().toString(16)
+      id || Math.random().toString(16)
     );
 
     funcForm(newUser);
@@ -68,7 +79,7 @@ export default function Form({ age, name, funcForm }: FormProps): JSX.Element {
           dnf={saveUser}
         />
         <Button
-          text="Canselar"
+          text="Cancelar"
           dnf={goToHome}
           color={`bg-blue-400 px-4 py-2 rounded-md border-solid border-1
             border-gray-400 hover:bg-blue-700 hover:border-yellow-300`}
