@@ -1,11 +1,12 @@
-
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import UserEdit from '../../components/UserEdit';
+import useGetUser from '../../hooks/useGetUser';
 
-const edition = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  // const idEdit = useRouter().query.edition as string;
-  return (<UserEdit />);
-}
+const Edition = () => {
+  const idEdit = useRouter().query.edition as string;
+  const userForEdit = useGetUser(idEdit);
 
-export default edition;
+  return (userForEdit.id.length > 1 && <UserEdit user={userForEdit} />);
+};
+
+export default Edition;
