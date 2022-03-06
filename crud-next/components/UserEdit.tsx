@@ -1,27 +1,15 @@
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
+import { collection, doc,  updateDoc } from "firebase/firestore";
 import dbase from '../backend/config';
 import Cliente from '../core/Cliente';
 
 import Layout from "./Layout";
 import Form from "./Form";
 
-export default function UserEdit():JSX.Element {
-  const idEdit = useRouter().query.edition as string;
-  const usersCollectionRef = collection(dbase, "users");
-  const userDoc = doc(usersCollectionRef, idEdit );
-  const [edUser, setEdUser] = useState<Cliente>(Cliente.cleaner());
+interface Props { user: Cliente;}
 
-  useEffect(() => {
-    const getUser = async () => {
-      const usDocs = (await getDoc(userDoc)).data();
-      const AtEdit = new Cliente(usDocs?.name, usDocs?.age, usDocs?.id);
-      if (edUser.name === '') {
-        return  setEdUser(AtEdit);
-      }};
-    getUser();
-  }, [edUser, userDoc]);
+export default function UserEdit({ user }: Props): JSX.Element {
+  const usersCollectionRef = collection(dbase, "users");
+  const userDoc = doc(usersCollectionRef, user.id);
 
   const updateUser = async (editUsr: Cliente) => { 
     const newFealds = {
@@ -31,13 +19,14 @@ export default function UserEdit():JSX.Element {
     };
     await updateDoc(userDoc, newFealds);
   }
+
   return (
         <Layout>
           <Form
             funcForm={updateUser}
-            id={edUser && edUser.id}
-            name={edUser.name}
-            age={edUser.age}
+            id={user.id}
+            name={user.name}
+            age={user.age}
           />
     </Layout>
   )
